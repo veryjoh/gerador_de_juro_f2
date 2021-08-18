@@ -3,7 +3,7 @@ class Emprestimo:
     def __init__(self, cliente, valor_solicitado: int, dias_p_devolucao: int):
         self._id = (id(self))
         self._cliente = cliente
-        self._juros_base = 0.60
+        self._juros_base = 0.6
         self._valor_solicitado = int(valor_solicitado)
         self._dias_p_devolucao = int(dias_p_devolucao)
 
@@ -16,7 +16,9 @@ class Emprestimo:
         return self._dias_p_devolucao
 
     def acresce_juros(self):
-        valor_com_juros = self.valor_solicitado*self._juros_base
+        valor_com_juros = (
+            self.valor_solicitado * self._juros_base
+            ) + self.dias_p_devolucao
         return valor_com_juros
 
     def calcula_valor_final(self):
@@ -26,7 +28,7 @@ class Emprestimo:
     def emprestimo_pago(self):
         return True
 
-    def resumo_do_emprestimo(self):
+    def _str__(self):
 
         resumo_do_emprestimo = {
             "Cliente": self._cliente.nome,
